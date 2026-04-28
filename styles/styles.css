@@ -11,13 +11,56 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* Colours */
+  --almac-red: #e63329;
+  --almac-dark-red: #a00000;
+  --almac-grey: #44555f;
+  --almac-black: #0d0d0d;
+  --almac-white: #ffffff;
+
+  /* Red */
+  --almac-red-50: #fbeae9;
+  --almac-red-100: #f5c9c6;
+  --almac-red-200: #f1a19d;
+  --almac-red-300: #ef7c76;
+  --almac-red-400: #ea554d;
+  --almac-red-500: #e63329;
+  --almac-red-600: #d71e14;
+  --almac-red-700: #b11911;
+  --almac-red-800: #91140d;
+  --almac-red-900: #6e0d08;
+
+  /* Dark red */
+  --almac-dark-red-50: #ff2e2e;
+  --almac-dark-red-100: #f50000;
+  --almac-dark-red-200: #db0000;
+  --almac-dark-red-300: #bd0000;
+  --almac-dark-red-400: #a30000;
+  --almac-dark-red-500: #a00000;
+  --almac-dark-red-600: #8f0000;
+  --almac-dark-red-700: #660000;
+  --almac-dark-red-800: #570000;
+  --almac-dark-red-900: #470000;
+
+  /* Grey */
+  --almac-grey-50: #8ba0ac;
+  --almac-grey-100: #7991a0;
+  --almac-grey-200: #688392;
+  --almac-grey-300: #5d7583;
+  --almac-grey-400: #506571;
+  --almac-grey-500: #44555f;
+  --almac-grey-600: #3c4e58;
+  --almac-grey-700: #2b3840;
+  --almac-grey-800: #253037;
+  --almac-grey-900: #1f282e;
+
+  /* Base */
+  --background-color: var(--almac-white);
+  --text-color: var(--almac-black);
+  --link-color: var(--almac-red);
+  --link-hover-color: var(--almac-dark-red);
+  --light-color: var(--almac-red-50);
+  --dark-color: var(--almac-grey);
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
