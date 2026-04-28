@@ -116,7 +116,8 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-weight: 500;
+  line-height: var(--body-line-height);
 }
 
 body.appear {
@@ -145,18 +146,47 @@ h5,
 h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
+  color: var(--text-color);
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  letter-spacing: 0;
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 600;
+  line-height: var(--heading-line-height);
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 400;
+  line-height: var(--heading-line-height);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: var(--heading-line-height);
+}
+
+h4 {
+  font-size: var(--heading-font-size-m);
+  font-weight: 500;
+  line-height: var(--heading-line-height-tight);
+}
+
+h5 {
+  font-size: var(--heading-font-size-s);
+  font-weight: 500;
+  line-height: var(--body-line-height);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+  font-weight: 500;
+  line-height: var(--heading-line-height-flat);
+}
 
 p,
 dl,
