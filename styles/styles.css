@@ -225,8 +225,8 @@ pre {
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
+main > div:not(.section) {
+  margin: var(--layout-section-spacing) var(--layout-page-padding);
 }
 
 input,
