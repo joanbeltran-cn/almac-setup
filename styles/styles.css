@@ -372,11 +372,13 @@ main img {
   display: inline-block;
   height: 24px;
   width: 24px;
+  color: currentColor;
 }
 
-.icon img {
+.icon svg {
   height: 100%;
   width: 100%;
+  fill: currentColor;
 }
 
 /* sections */

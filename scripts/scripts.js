@@ -2,7 +2,6 @@ import {
   buildBlock,
   loadHeader,
   loadFooter,
-  decorateIcons,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
@@ -11,6 +10,96 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+
+const ICONS_CACHE = {};
+const SVG_ICON_SPRITE_ID = 'eds-svg-sprite';
+
+function getIconName(span) {
+  const iconClass = [...span.classList].find((className) => className.startsWith('icon-'));
+  return iconClass?.substring(5);
+}
+
+/**
+ * Decorates SVG icons using an inline sprite.
+ * Icons are loaded from /icons/{iconName}.svg.
+ * @param {Element} element The container element
+ */
+export async function decorateSVGIcons(element) {
+  let svgSprite = document.getElementById(SVG_ICON_SPRITE_ID);
+
+  if (!svgSprite) {
+    svgSprite = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgSprite.id = SVG_ICON_SPRITE_ID;
+    svgSprite.setAttribute('style', 'display: none');
+    document.body.append(svgSprite);
+  }
+
+  const icons = [...element.querySelectorAll('span.icon')];
+
+  await Promise.all(
+    icons.map(async (span) => {
+      const iconName = getIconName(span);
+
+      if (!iconName) return;
+
+      if (!ICONS_CACHE[iconName]) {
+        ICONS_CACHE[iconName] = true;
+
+        try {
+          const response = await fetch(`${window.hlx.codeBasePath}/icons/${iconName}.svg`);
+
+          if (!response.ok) {
+            ICONS_CACHE[iconName] = false;
+            return;
+          }
+
+          const svg = await response.text();
+
+          if (svg.match(/(<style | class=)/)) {
+            ICONS_CACHE[iconName] = { styled: true, html: svg };
+          } else {
+            ICONS_CACHE[iconName] = {
+              styled: false,
+              html: svg
+                .replace('<svg', `<symbol id="icons-sprite-${iconName}"`)
+                .replace(/ width=".*?"/, '')
+                .replace(/ height=".*?"/, '')
+                .replace('</svg>', '</symbol>'),
+            };
+          }
+        } catch (error) {
+          ICONS_CACHE[iconName] = false;
+          // eslint-disable-next-line no-console
+          console.error(error);
+        }
+      }
+    }),
+  );
+
+  icons.forEach((span) => {
+    const iconName = getIconName(span);
+    const icon = ICONS_CACHE[iconName];
+
+    if (!icon) return;
+
+    span.innerHTML = '';
+
+    if (icon.styled) {
+      span.innerHTML = icon.html;
+      return;
+    }
+
+    if (!document.getElementById(`icons-sprite-${iconName}`)) {
+      svgSprite.insertAdjacentHTML('beforeend', icon.html);
+    }
+
+    span.innerHTML = `
+      <svg aria-hidden="true" focusable="false">
+        <use href="#icons-sprite-${iconName}"></use>
+      </svg>
+    `;
+  });
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -119,7 +208,7 @@ function decorateButtons(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  decorateIcons(main);
+  decorateSVGIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
