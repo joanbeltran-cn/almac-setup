@@ -11,7 +11,7 @@ import {
   loadCSS,
 } from './aem.js';
 
-import { fetchAllLangPlaceholders } from './placeholders.js';
+import fetchAllLangPlaceholders from './placeholders.js';
 
 const ICONS_CACHE = {};
 const SVG_ICON_SPRITE_ID = 'eds-svg-sprite';

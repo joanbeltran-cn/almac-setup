@@ -1,5 +1,3 @@
-import { toCamelCase } from './aem.js';
-
 /**
  * Fetches and caches placeholders for a given language prefix.
  * Placeholders are expected to be authored in /placeholders.json.
@@ -39,8 +37,8 @@ export default async function fetchAllLangPlaceholders(prefix = 'en') {
   }
 
   const entries = json.data
-    .filter((entry) => entry[prefix] !== undefined)
-    .map((entry) => [toCamelCase(entry.Key), entry[prefix]]);
+    .filter((entry) => entry.Key && entry[prefix] !== undefined)
+    .map((entry) => [entry.Key, entry[prefix]]);
 
   if (entries.length === 0) {
     // eslint-disable-next-line no-console
