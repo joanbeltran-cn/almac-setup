@@ -9,6 +9,7 @@
 }
 
 /* fallback fonts */
+
 /* TODO: Replace size-adjust after running the AEM font fallback extension on representative pages. */
 @font-face {
   font-family: montserrat-fallback;

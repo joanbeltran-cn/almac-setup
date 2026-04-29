@@ -16,7 +16,7 @@
   --almac-dark-red: #a00000;
   --almac-grey: #44555f;
   --almac-black: #0d0d0d;
-  --almac-white: #ffffff;
+  --almac-white: #fff;
 
   /* Red */
   --almac-red-50: #fbeae9;
@@ -38,7 +38,7 @@
   --almac-dark-red-400: #a30000;
   --almac-dark-red-500: #a00000;
   --almac-dark-red-600: #8f0000;
-  --almac-dark-red-700: #660000;
+  --almac-dark-red-700: #600;
   --almac-dark-red-800: #570000;
   --almac-dark-red-900: #470000;
 
@@ -372,13 +372,13 @@ main img {
   display: inline-block;
   height: 24px;
   width: 24px;
-  color: currentColor;
+  color: currentcolor;
 }
 
 .icon svg {
   height: 100%;
   width: 100%;
-  fill: currentColor;
+  fill: currentcolor;
 }
 
 /* sections */
