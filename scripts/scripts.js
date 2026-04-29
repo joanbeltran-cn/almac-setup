@@ -11,6 +11,8 @@ import {
   loadCSS,
 } from './aem.js';
 
+import { fetchAllLangPlaceholders } from './placeholders.js';
+
 const ICONS_CACHE = {};
 const SVG_ICON_SPRITE_ID = 'eds-svg-sprite';
 
@@ -221,6 +223,7 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
+  await fetchAllLangPlaceholders(document.documentElement.lang);
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
